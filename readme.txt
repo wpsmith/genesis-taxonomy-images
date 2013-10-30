@@ -62,14 +62,14 @@ Support is provided in my free time but every effort will be made to respond to 
 Yes, of course you can! You can find a link [here](http://www.studiograsshopper.ch/genesis-taxonomy-images/). Thanks!
 
 
-= Where are the Settings? =
+= Where is the Settings page? =
 
-There are no settings necessary for using this plugin. However, in order to display the Taxonomy Images you need to add some code to your Genesis Child Theme's `functions.php` file. Code examples can be found in the plugin's [User Guide](http://www.studiograsshopper.ch/genesis-taxonomy-images/user-guide/).
+There is no need for a Settings page. Images are uploaded/added via the Dashboard Edit screen for images for the taxonomy term in question.
 
 
-= This FAQ is a bit light, no? =
+= How do I display these images in my theme? =
 
-More usage info will be added here soon. In the meantime, usage instructions can be found in the plugin's [User Guide](http://www.studiograsshopper.ch/genesis-taxonomy-images/user-guide/).
+You need to add some code to your Genesis Child Theme's `functions.php` file. Code examples can be found in the plugin's [User Guide](http://www.studiograsshopper.ch/genesis-taxonomy-images/user-guide/).
 
 
 = License and Disclaimer =

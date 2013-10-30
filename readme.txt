@@ -64,7 +64,7 @@ Yes, of course you can! You can find a link [here](http://www.studiograsshopper.
 
 = Where is the Settings page? =
 
-There is no need for a Settings page. Images are uploaded/added via the Dashboard Edit screen for images for the taxonomy term in question.
+There is no need for a Settings page. Images are uploaded/added via the Dashboard Edit screen for the taxonomy term in question.
 
 
 = How do I display these images in my theme? =

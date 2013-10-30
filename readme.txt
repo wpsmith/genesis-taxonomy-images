@@ -87,7 +87,7 @@ Thanks for downloading the plugin.
 
 == Other Notes ==
 
-Note that the new "Specify Posts by ID" option overrides ALL other options related to post and category selection. Therefore, in order to use the other post selection options, make sure that the Specify Posts by ID field is blank. If not, the value of the Specify Posts by ID field will be used for selecting the posts to display.
+In order to use this plugin your current theme must be a Genesis Child Theme.
 
 
 

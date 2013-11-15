@@ -37,7 +37,6 @@ add_action( 'init', 'gtaxi_add_taxonomy_image_hooks', 999 );
  */
 function gtaxi_add_taxonomy_image_hooks() {
 
-	// add_action( 'admin_enqueue_scripts', 'gtaxi_admin_scripts' );
 	add_action( 'load-edit-tags.php', 'gtaxi_admin_scripts' );
     
 	$taxonomies = gtaxi_get_taxonomies();
@@ -121,7 +120,7 @@ function gtaxi_add_edit_term_fields( $term, $taxonomy ) {
 		$value = '0';
 	}
 	?>
-	<h3><?php _e( 'Term Image', 'gftw' ); ?></h3>
+	<a name="term-image" href="#term-image"><h3><?php _e( 'Term Image', 'gftw' ); ?></h3></a>
 	<table class="form-table">
 		<tbody>
 			<tr class="form-field">
@@ -258,7 +257,7 @@ function gtaxi_taxonomy_image_column_content( $columns, $column, $id ) {
 
 		$alt = esc_attr( $term->name ) . ' Term image';
 		
-		$columns .= '<a href=""><img src="' . $image . '" alt="' . $alt . '" class="wp-post-image" height="48" width="48" /></a>';
+		$columns .= '<a href="' . get_edit_tag_link( $id, $taxonomy ) . '#term-image"><img src="' . $image . '" alt="' . $alt . '" class="wp-post-image" height="48" width="48" /></a>';
 
 	}
 

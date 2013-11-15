@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-add_action( 'init', 'gtaxi_add_taxonomy_image_hooks' );
+add_action( 'init', 'gtaxi_add_taxonomy_image_hooks', 999 );
 /**
  * Add taxonomy image functionality to taxonomy terms admin screens.
  *
@@ -39,7 +39,8 @@ function gtaxi_add_taxonomy_image_hooks() {
 
 	add_action( 'admin_enqueue_scripts', 'gtaxi_admin_scripts' );
 	
-	foreach ( get_taxonomies( array( 'show_ui' => true ) ) as $tax_name ) {
+	$taxonomies = apply_filters( 'gtaxi_taxonomies', get_taxonomies( array( 'show_ui' => true ) ) );
+	foreach ( $taxonomies as $tax_name ) {
 		add_filter( 'manage_edit-'.$tax_name.'_columns', 'gtaxi_taxonomy_image_column' );
 		add_filter( 'manage_'.$tax_name.'_custom_column', 'gtaxi_taxonomy_image_column_content', 10, 3 );
 		// Priority of 9 to insert this before Genesis term meta fields

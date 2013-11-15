@@ -29,7 +29,7 @@ add_action( 'init', 'gtaxi_add_taxonomy_image_hooks', 999 );
  *
  * @since 0.8.0
  *
- * @see none
+ * @see gtaxi_get_taxonomies()
  * @link none
  * @global none.
  *
@@ -37,15 +37,28 @@ add_action( 'init', 'gtaxi_add_taxonomy_image_hooks', 999 );
  */
 function gtaxi_add_taxonomy_image_hooks() {
 
-	add_action( 'admin_enqueue_scripts', 'gtaxi_admin_scripts' );
-	
-	$taxonomies = apply_filters( 'gtaxi_taxonomies', get_taxonomies( array( 'show_ui' => true ) ) );
+	// add_action( 'admin_enqueue_scripts', 'gtaxi_admin_scripts' );
+	add_action( 'load-edit-tags.php', 'gtaxi_admin_scripts' );
+    
+	$taxonomies = gtaxi_get_taxonomies();
 	foreach ( $taxonomies as $tax_name ) {
 		add_filter( 'manage_edit-'.$tax_name.'_columns', 'gtaxi_taxonomy_image_column' );
 		add_filter( 'manage_'.$tax_name.'_custom_column', 'gtaxi_taxonomy_image_column_content', 10, 3 );
 		// Priority of 9 to insert this before Genesis term meta fields
 		add_action( $tax_name.'_edit_form', 'gtaxi_add_edit_term_fields', 9, 2 );
 	}
+}
+
+/**
+ * Supported taxonomies.
+ * 
+ * Gets supported taxonomies. Change once, change everywhere.
+ * 
+ * @since 0.8.1
+ * @return array Array of supported taxonomies.
+ */
+function gtaxi_get_taxonomies() {
+    return apply_filters( 'gtaxi_get_taxonomies', get_taxonomies( array( 'show_ui' => true ) ) );
 }
 
 
@@ -61,6 +74,7 @@ function gtaxi_add_taxonomy_image_hooks() {
  * @since 0.8.0
  *
  * @see gtaxi_add_taxonomy_image_hooks()
+ * @see gtaxi_get_taxonomies()
  * @link none
  * @global none.
  *
@@ -68,9 +82,9 @@ function gtaxi_add_taxonomy_image_hooks() {
  */
 function gtaxi_admin_scripts() {
 	
-    $screen = get_current_screen();
+    $taxonomy = isset( $_GET['taxonomy'] ) ? $_GET['taxonomy'] : '';
     
-    if ( in_array( $screen->id, array('edit-category') ) )
+    if ( in_array( $taxonomy, gtaxi_get_taxonomies() ) )
 		wp_enqueue_media();
 }
 
@@ -244,7 +258,7 @@ function gtaxi_taxonomy_image_column_content( $columns, $column, $id ) {
 
 		$alt = esc_attr( $term->name ) . ' Term image';
 		
-		$columns .= '<img src="' . $image . '" alt="' . $alt . '" class="wp-post-image" height="48" width="48" />';
+		$columns .= '<a href=""><img src="' . $image . '" alt="' . $alt . '" class="wp-post-image" height="48" width="48" /></a>';
 
 	}
 
